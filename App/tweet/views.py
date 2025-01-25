@@ -49,6 +49,16 @@ def delete_tweet(request, tweet_id):
     return render(request, 'tweet/tweet_confirm_delete.html', {'tweet': tweet})
 
 
+def search_tweet(request):
+    query = request.GET.get('search', '').strip() 
+    tweets = []
+    print("query is:",query)
+    if query:  
+        tweets = Tweet.objects.filter(text__icontains=query)  
+
+    return render(request, 'tweet/search_results.html', {'tweets': tweets, 'query': query})
+
+
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)

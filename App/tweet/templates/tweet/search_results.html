@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Chai aur tweet
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center m-4">Welcome to django project - TWEET LIST</h1>
+    <a href="{% url 'tweet_create'%}" class="btn btn-primary mb-3 mt-3 mx-auto col-md-5 vstack">Create your own Tweet</a>
+    <h2>Your searched query parameter is: {{query}}</h2> 
+    <div class="container mt-4">
+        <div class="row">
+            {% for tweet in tweets %}
+            <div class="col-md-4 mb-4"> 
+                <div class="card">
+                    <img src="{{ tweet.photo.url }}" alt="" class="card-img-top " style="height: 250px; width: 100%; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tweet.user }}</h5>
+                        <p class="card-text">{{ tweet.text }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Created at - {{ tweet.created_at }}</li>
+                        <li class="list-group-item">Updated at - {{ tweet.updated_at }}</li>
+                    </ul>
+                    {% if tweet.user == user %}
+                        <div class="card-body">
+                            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>    
+{% endblock %}
