@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Chai aur tweet
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center m-4">Welcome to django project - TWEET FORM</h1>
+    <h2>
+      {% if form.instance.pk %} 
+        Edit tweet
+      {% else %}
+        Create Tweet
+      {% endif %}
+    </h2>
+    <form 
+      method="post" 
+      enctype="multipart/form-data"
+      class="form"
+    >
+    {% csrf_token %}
+      {{form}}
+      
+      <button type="submit" class="btn btn-success  vstack">Submit</button>
+    </form>
+    <a href="{% url 'tweet_list'%}" class="btn btn-light  vstack my-3"> Back to Tweet List </a>
+{% endblock %}

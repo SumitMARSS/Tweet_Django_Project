@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Chai aur tweet
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-center m-4">Welcome to django project -  LOGGED OUT PAGE</h1>
+    <h2>You have been logged out.........</h2>
+    <p>Please login again... ?</p>
+    <a href="{% url 'login' %}" class="btn btn-warning">Register here</a>
+{% endblock %}
